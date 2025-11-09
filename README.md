@@ -2,6 +2,7 @@
 
 **SHL Research Intern (AI) – Technical Assessment**
 
+Open In Colab : https://colab.research.google.com/drive/1Hvv9G4fauCS8yyF1EqZvnh1E5UOseDRE?usp=sharing
 ---
 
 ##  Project Overview
@@ -425,3 +426,5 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 ---
 
 **Built with Love for AI-powered talent assessment | November 2025**
+
+
