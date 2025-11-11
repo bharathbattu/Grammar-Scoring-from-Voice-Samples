@@ -32,7 +32,6 @@ def _load_whisper_model(model_size: str = "small") -> Tuple[Any, str]:
     if _whisper_model is not None:
         return _whisper_model, _model_type  # type: ignore
 
-    # Try faster-whisper first for better performance
     try:
         from faster_whisper import WhisperModel  # type: ignore
 
@@ -106,7 +105,7 @@ def transcribe(
     if not audio_file.exists():
         raise FileNotFoundError(f"Audio file not found: {audio_path}")
 
-    # Check if file is empty
+    
     if audio_file.stat().st_size == 0:
         raise ValueError(f"Audio file is empty: {audio_path}")
 
@@ -124,7 +123,7 @@ def transcribe(
                 str(audio_path),
                 language=language,
                 beam_size=5,
-                vad_filter=True,  # Voice Activity Detection to filter silence
+                vad_filter=True,  
                 word_timestamps=False
             )
 
@@ -191,3 +190,4 @@ def get_model_info() -> Dict[str, Optional[str]]:
         "model_type": _model_type,
         "message": f"Using {_model_type} for transcription"
     }
+
