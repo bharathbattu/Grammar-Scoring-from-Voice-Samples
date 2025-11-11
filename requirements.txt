@@ -1,18 +1,14 @@
 # Grammar Scoring Engine from Voice Samples
 # Requirements file for production and development
 
-# ============================================
 # Core API
-# ============================================
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=1.10.0,<2.0.0  # Using Pydantic v1 for compatibility
 python-multipart>=0.0.6  # Required for form data / file uploads
 
-# ============================================
 # ASR (Automatic Speech Recognition)
-# ============================================
-faster-whisper>=0.10.0  # Optimized Whisper implementation (recommended)
+faster-whisper>=0.10.0  # Optimized Whisper implementation 
 # openai-whisper>=20231117  # Alternative: official OpenAI Whisper (uncomment if faster-whisper unavailable)
 
 # Note: PyTorch is required by Whisper models
@@ -21,39 +17,30 @@ faster-whisper>=0.10.0  # Optimized Whisper implementation (recommended)
 #   CUDA: pip install torch --index-url https://download.pytorch.org/whl/cu118 (adjust cu118 to your CUDA version)
 torch>=2.0.0  # Version-agnostic, install appropriate variant for your system
 
-# ============================================
 # Grammar / NLP
-# ============================================
 language-tool-python>=2.7.1  # Grammar and spell checking
 
-# ============================================
 # Scoring / Metrics
-# ============================================
 jiwer>=3.0.0  # Word Error Rate (WER) calculation
-numpy>=1.24.0  # Numerical operations (used by various dependencies)
+numpy>=1.24.0  # Numerical operations 
 
-# ============================================
 # Testing
-# ============================================
 pytest>=7.4.0
 pytest-asyncio>=0.21.0  # For testing async FastAPI endpoints
 httpx>=0.25.0  # Required for FastAPI TestClient
 
-# ============================================
 # Optional Audio Utilities
-# ============================================
 # Uncomment if you need advanced audio preprocessing or format conversion
 # librosa>=0.10.0  # Audio analysis and feature extraction
 # soundfile>=0.12.0  # Audio file I/O (required by librosa)
 # pydub>=0.25.1  # Audio format conversion and manipulation
 # ffmpeg-python>=0.2.0  # Python bindings for FFmpeg
 
-# ============================================
 # Development Tools (Optional)
-# ============================================
 # Uncomment for development convenience
 # black>=23.0.0  # Code formatter
 # isort>=5.12.0  # Import sorter
 # flake8>=6.0.0  # Linter
 # mypy>=1.5.0  # Type checker
 # pre-commit>=3.3.0  # Git hooks for code quality
+
