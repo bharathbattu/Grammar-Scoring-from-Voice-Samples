@@ -7,7 +7,7 @@
 
 ## Abstract
 
-This report presents an end-to-end system for **automated language proficiency scoring from spoken audio**, addressing a critical need in AI-driven talent assessment. Manual evaluation of spoken language is costly, subjective, and does not scale—yet verbal communication skills are essential for many roles. We propose a pipeline combining **Whisper ASR** for transcription, **LanguageTool** for grammar analysis, and a **research-backed scoring engine** that produces interpretable 0–100 proficiency scores. The system extracts four key features (grammar errors, filler words, speaking rate, and optional pronunciation accuracy) and weights them based on linguistic research and psychometric principles. Our prototype demonstrates the feasibility of scalable, explainable speech assessment suitable for integration into SHL's talent evaluation platform.
+This report presents an end-to-end system for **automated language proficiency scoring from spoken audio**, addressing a critical need in AI-driven talent assessment. Manual evaluation of spoken language is costly, subjective, and does not scale yet verbal communication skills are essential for many roles. We propose a pipeline combining **Whisper ASR** for transcription, **LanguageTool** for grammar analysis, and a **research-backed scoring engine** that produces interpretable 0–100 proficiency scores. The system extracts four key features (grammar errors, filler words, speaking rate, and optional pronunciation accuracy) and weights them based on linguistic research and psychometric principles. Our prototype demonstrates the feasibility of scalable, explainable speech assessment suitable for integration into SHL's talent evaluation platform.
 
 ---
 
@@ -15,7 +15,7 @@ This report presents an end-to-end system for **automated language proficiency s
 
 ### 1.1 Context: Speech Assessment in Talent Evaluation
 
-SHL (Saville and Holdsworth Ltd.) is a global leader in talent assessment, providing AI-powered tools to evaluate candidates across cognitive, behavioral, and linguistic dimensions. Spoken language proficiency is a critical competency for roles in customer service, education, consulting, and leadership—yet traditional assessment methods rely on expensive, time-consuming human raters whose judgments may vary in consistency.
+SHL (Saville and Holdsworth Ltd.) is a global leader in talent assessment, providing AI-powered tools to evaluate candidates across cognitive, behavioral, and linguistic dimensions. Spoken language proficiency is a critical competency for roles in customer service, education, consulting, and leadership yet traditional assessment methods rely on expensive, time-consuming human raters whose judgments may vary in consistency.
 
 ### 1.2 The Challenge of Manual Speech Scoring
 
@@ -475,3 +475,4 @@ This work represents a **strong foundation** for SHL's next-generation speech as
 ---
 
 **End of Report**
+
