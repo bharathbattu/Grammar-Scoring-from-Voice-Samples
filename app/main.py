@@ -93,13 +93,13 @@ async def score_audio(
     tmp_audio_path = None
 
     try:
-        # Step 1: Save uploaded file temporarily
+        # Save uploaded file temporarily
         with tempfile.NamedTemporaryFile(delete=False, suffix=file_ext) as tmp_file:
             content = await audio.read()
             tmp_file.write(content)
             tmp_audio_path = tmp_file.name
 
-        # Step 2: Transcribe audio using Whisper ASR
+        # Transcribe audio using Whisper ASR
         asr_result = transcribe(tmp_audio_path, model_size="small")
         transcript_text = asr_result["transcript"]
         word_count = asr_result["word_count"]
@@ -109,17 +109,17 @@ async def score_audio(
         # Clean and normalize transcript
         normalized_text = normalize_transcript(transcript_text)
 
-        # Step 3: Extract grammar errors
+        # Extract grammar errors
         grammar_error_count, grammar_error_details = grammar_errors(
             normalized_text, language="en-US")
 
-        # Step 4: Detect filler words
+        # Detect filler words
         filler_word_count, filler_word_list = filler_count(normalized_text)
 
-        # Step 5: Calculate fluency (WPM)
+        # Calculate fluency (WPM)
         wpm = words_per_minute(word_count, duration_sec)
 
-        # Step 6: Calculate WER if reference provided
+        # Calculate WER if reference provided
         wer_value = None
         if reference_transcript and reference_transcript.strip():
             try:
@@ -127,20 +127,20 @@ async def score_audio(
                 wer_value = calculate_wer(
                     reference_transcript, normalized_text)
             except ImportError:
-                # jiwer not available, skip WER calculation
+                
                 wer_value = None
             except Exception:
-                # Error calculating WER, skip
+               
                 wer_value = None
 
-        # Step 7: Normalize penalties
+        # Normalize penalties
         grammar_penalty = normalize_grammar_errors(
             grammar_error_count, word_count)
         filler_penalty = normalize_fillers(filler_word_count, word_count)
         wer_penalty = normalize_wer(wer_value)
         fluency_pen = fluency_penalty(wpm)
 
-        # Step 8: Compute final score
+        # Compute final score
         final = calculate_final_score(
             grammar_penalty=grammar_penalty,
             filler_penalty=filler_penalty,
@@ -148,7 +148,7 @@ async def score_audio(
             fluency_pen=fluency_pen
         )
 
-        # Step 9: Generate explanation
+        # Generate explanation
         explanation = generate_score_explanation(
             grammar_penalty=grammar_penalty,
             filler_penalty=filler_penalty,
@@ -157,7 +157,7 @@ async def score_audio(
             final=final
         )
 
-        # Step 10: Build response objects
+        # Build response objects
         asr_obj = ASRResult(
             transcript=transcript_text,
             word_count=word_count,
@@ -198,7 +198,7 @@ async def score_audio(
             asr=asr_obj,
             metrics=metrics_obj,
             grammar_details=grammar_error_objects,
-            filler_words=filler_word_list[:20],  # Limit to top 20 fillers
+            filler_words=filler_word_list[:20], 
             explanation=explanation,
             model_version=model_version,
             generated_at=datetime.now(timezone.utc)
@@ -218,12 +218,12 @@ async def score_audio(
         )
 
     finally:
-        # Always clean up temporary file
+       
         if tmp_audio_path and Path(tmp_audio_path).exists():
             try:
                 Path(tmp_audio_path).unlink()
             except Exception:
-                pass  # Best effort cleanup
+                pass  
 
 
 @app.get("/")
@@ -248,3 +248,4 @@ async def root() -> Dict[str, Any]:
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
