@@ -300,7 +300,7 @@ def normalize_transcript(text: str) -> str:
     # Fix spacing around punctuation (e.g., "word ." -> "word.")
     text = re.sub(r'\s+([.,!?;:])', r'\1', text)
 
-    # Strip leading/trailing whitespace
     text = text.strip()
 
     return text
+
