@@ -327,7 +327,7 @@ Our model adapts these principles for automated scoring without human judgment.
 ### 5.2 Ethical & Fairness Risks
 
 #### 5.2.1 Accent Discrimination
-ASR errors are **not uniformly distributed**. Speakers with non-mainstream accents receive less accurate transcriptions, leading to inflated error counts and lower scores—even if their spoken language is proficient.
+ASR errors are **not uniformly distributed**. Speakers with non-mainstream accents receive less accurate transcriptions, leading to inflated error counts and lower scores even if their spoken language is proficient.
 
 **Example:**
 - Speaker A (American accent): "I have experience in data science" → Transcribed correctly → 0 grammar errors
@@ -398,14 +398,14 @@ The system cannot assess:
 
 #### 6.3.2 Psychometric Validation
 - **Construct validity**: Does score correlate with external measures (e.g., TOEFL Speaking)?
-- **Reliability**: Test-retest reliability (same speaker, multiple recordings)
+- **Reliability**: Test retest reliability (same speaker, multiple recordings)
 - **Differential item functioning (DIF)**: Ensure scoring fairness across subgroups
 
 ### 6.4 SHL Integration
 
 - **API Deployment**: Containerize with Docker, deploy on AWS/Azure
 - **Scalability**: Use async processing (Celery + Redis) for batch scoring
-- **UI Integration**: Embed in SHL's candidate portal with real-time feedback
+- **UI Integration**: Embed in SHL's candidate portal with real time feedback
 - **Multi-language support**: Extend to Spanish, Mandarin, French for global assessments
 
 ---
@@ -475,4 +475,5 @@ This work represents a **strong foundation** for SHL's next-generation speech as
 ---
 
 **End of Report**
+
 
