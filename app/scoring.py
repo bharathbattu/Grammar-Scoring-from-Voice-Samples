@@ -1,5 +1,4 @@
 """
-Scoring module for language proficiency assessment.
 
 This module converts extracted speech features into a normalized 0-100 proficiency score.
 The scoring system is based on research in automated speech assessment and language testing.
@@ -352,3 +351,4 @@ def generate_score_explanation(
     )
 
     return explanation
+
