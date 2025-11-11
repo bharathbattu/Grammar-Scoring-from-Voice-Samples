@@ -51,7 +51,7 @@ class TestNormalizeGrammarErrors:
     def test_intermediate_errors_proportional(self):
         """6 errors per 100 words should be ~0.5 penalty."""
         penalty = normalize_grammar_errors(error_count=6, word_count=100)
-        assert 0.45 <= penalty <= 0.55  # Allow small floating point variance
+        assert 0.45 <= penalty <= 0.55 
 
     def test_scales_with_word_count(self):
         """Same error rate should produce same penalty regardless of word count."""
@@ -220,7 +220,7 @@ class TestCalculateFinalScore:
         """Score should always be clamped to [0, 100]."""
         # Test with extreme values
         score = calculate_final_score(
-            grammar_penalty=2.0,  # Beyond max
+            grammar_penalty=2.0,  
             filler_penalty=2.0,
             wer_penalty=2.0,
             fluency_pen=2.0
@@ -261,8 +261,8 @@ class TestCalculateFinalScore:
         grammar_deduction = 100.0 - score_grammar
         filler_deduction = 100.0 - score_filler
 
-        assert abs(grammar_deduction - 35.0) < 0.1  # Grammar weight is 35%
-        assert abs(filler_deduction - 25.0) < 0.1   # Filler weight is 25%
+        assert abs(grammar_deduction - 35.0) < 0.1  
+        assert abs(filler_deduction - 25.0) < 0.1   
 
     def test_weights_are_properly_applied(self):
         """Verify that weights are correctly applied to each component."""
@@ -280,10 +280,6 @@ class TestCalculateFinalScore:
     def test_mixed_penalties_realistic_scenario(self):
         """Test realistic scenario with mixed penalties."""
         # Moderate proficiency speaker:
-        # - Some grammar errors (0.3 penalty)
-        # - Few fillers (0.2 penalty)
-        # - Good accuracy (0.1 WER penalty)
-        # - Good fluency (0.0 penalty)
         score = calculate_final_score(
             grammar_penalty=0.3,
             filler_penalty=0.2,
@@ -292,14 +288,7 @@ class TestCalculateFinalScore:
         )
 
         # Expected deductions:
-        # Grammar: 0.3 * 35 = 10.5
-        # Fillers: 0.2 * 25 = 5.0
-        # WER: 0.1 * 20 = 2.0
-        # Fluency: 0.0 * 20 = 0.0
-        # Total: 17.5 points deducted
-        # Score: 100 - 17.5 = 82.5
-
-        assert 81.0 <= score <= 84.0  # Allow small variance
+        assert 81.0 <= score <= 84.0  
 
     def test_score_precision_two_decimals(self):
         """Final score should be rounded to 2 decimal places."""
@@ -343,10 +332,6 @@ class TestWeightSum:
     def test_weights_sum_to_one(self):
         """All weights should sum to 1.0 for proper normalization."""
         total = WEIGHT_GRAMMAR + WEIGHT_FILLERS + WEIGHT_WER + WEIGHT_FLUENCY
-        assert abs(total - 1.0) < 0.001  # Allow tiny floating point error
+        assert abs(total - 1.0) < 0.001  
 
 
-# Note: Additional tests will be added later for:
-# - text_features.py (grammar_errors, filler_count, etc.)
-# - FastAPI endpoint integration tests
-# - End-to-end pipeline tests with real audio samples
