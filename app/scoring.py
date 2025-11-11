@@ -29,17 +29,16 @@ Final score: 100 - (weighted_sum_of_penalties)
 from typing import Optional
 
 # Grammar error thresholds (per 100 words)
-# ≥12 errors per 100 words = very low proficiency
 MAX_GRAMMAR_ERRORS_PER_100 = 12.0
-MIN_GRAMMAR_ERRORS_PER_100 = 0.0   # 0 errors = perfect grammar
+MIN_GRAMMAR_ERRORS_PER_100 = 0.0   
 
 # Filler word thresholds (per 100 words)
-MAX_FILLERS_PER_100 = 8.0  # ≥8 fillers per 100 words = very disfluent
-MIN_FILLERS_PER_100 = 0.0  # 0 fillers = perfectly fluent
+MAX_FILLERS_PER_100 = 8.0  
+MIN_FILLERS_PER_100 = 0.0  
 
 # WER (Word Error Rate) thresholds
-MAX_WER = 0.35  # ≥35% WER = very poor pronunciation/clarity
-MIN_WER = 0.0   # 0% WER = perfect accuracy
+MAX_WER = 0.35  
+MIN_WER = 0.0   
 
 # WPM (Words Per Minute) thresholds for fluency
 IDEAL_WPM_MIN = 110.0  # Minimum comfortable speaking rate
@@ -106,7 +105,7 @@ def normalize_grammar_errors(error_count: int, word_count: int) -> float:
         1.0
     """
     if word_count <= 0:
-        return 0.0  # No words = no penalty
+        return 0.0  
 
     # Calculate Grammar Error Rate (GER) per 100 words
     ger = (error_count / word_count) * 100.0
@@ -148,7 +147,7 @@ def normalize_fillers(filler_count: int, word_count: int) -> float:
         1.0
     """
     if word_count <= 0:
-        return 0.0  # No words = no penalty
+        return 0.0  
 
     # Calculate filler rate per 100 words
     filler_rate = (filler_count / word_count) * 100.0
@@ -191,10 +190,10 @@ def normalize_wer(wer: Optional[float]) -> float:
         0.0
     """
     if wer is None:
-        return 0.0  # No reference = no WER penalty
+        return 0.0  
 
     if wer < 0:
-        return 0.0  # Invalid WER
+        return 0.0  
 
     # Normalize to [0, 1] based on threshold
     penalty = wer / MAX_WER
@@ -237,7 +236,7 @@ def fluency_penalty(wpm: Optional[float]) -> float:
         0.0
     """
     if wpm is None or wpm <= 0:
-        return 0.0  # No WPM data = no penalty
+        return 0.0  
 
     # Within ideal range = no penalty
     if IDEAL_WPM_MIN <= wpm <= IDEAL_WPM_MAX:
@@ -351,4 +350,5 @@ def generate_score_explanation(
     )
 
     return explanation
+
 
